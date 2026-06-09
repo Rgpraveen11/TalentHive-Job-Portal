@@ -294,7 +294,9 @@ const linkedinAuth = passport.authenticate('linkedin', {
 const linkedinCallback = (req, res, next) => {
   passport.authenticate('linkedin', { session: false }, (err, user) => {
     if (err || !user) {
-      console.error('LinkedIn OAuth error:', err?.message);
+      console.error('LinkedIn OAuth FULL ERROR:', err);
+      console.error('MESSAGE:', err?.message);
+console.error('STACK:', err?.stack);
       return res.redirect(
         `${process.env.CLIENT_URL}/login?error=linkedin_failed`
       );
